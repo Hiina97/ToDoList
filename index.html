@@ -19,7 +19,8 @@
             
         }
         label{
-            font-size: 15px;            
+            font-size: 15px;    
+
         }
         .taskInput{
             width: 600px;
@@ -112,7 +113,7 @@
             //  タスク名の `span` を作る
             const taskSpan = document.createElement("span");
             taskSpan.textContent = taskInput.value;
-            taskSpan.style.marginRight = "10px"; // ✅ ここならOK！
+            taskSpan.style.marginRight = "10px"; // 文字列はstlyeでの編集ができないためいったんspanを作る
 
             //  日付の `span` を作る
             const dateSpan = document.createElement("span");
