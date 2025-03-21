@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <style>
+        main{
+            width: 1200px;
+            margin: 0 auto;
+        }
+    
+        h1{
+            text-align: center;
+        }
+        .new{
+            display: flex;
+            justify-content: space-around;
+            
+        }
+        label{
+            font-size: 15px;            
+        }
+        .taskInput{
+            width: 600px;
+            height: 30px;
+        }
+        .date{
+            width: 200px;
+            height: 30px;
+        }
+        #errorMsg{
+            visibility: hidden;
+            font-size: 13px;
+            color: red;
+        }
+        #btn{
+            margin-top: 25px;
+            background-color: rgb(1, 87, 1);
+            color: white;
+            border-radius: 5px;
+            height: 30px;
+        }
+
+        #btn:hover{
+            color: rgb(1, 87, 1);
+            background-color: white;
+        }
+
+        
+        
+        #task{
+            padding-left: 100px;
+            
+        }
+
+        li{
+            list-style: none;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <main>
+        <h1>タスクを完了して花を咲かせよう！</h1>
+        <div class="new">
+            <div class="addTask">
+                <label for="taskInput">タスク(必須)</label><br>
+                <input type="text" class="taskInput" id="taskInput">
+                <div id="errorMsg">※タスクを入力してください</div>
+            </div>
+            <div class="date">
+                <label for="date">期日</label>
+                <input type="date" class="date" id="date">
+            </div>
+            <button id="btn">追加</button>
+        </div>
+        <div class="displayTask">
+            <ul id="task"></ul>
+        </div>
+
+    
+    </main>
+    <script>
+        const taskInput = document.getElementById("taskInput");
+        const btn = document.getElementById("btn");
+        const errorMsg = document.getElementById("errorMsg");
+        const date = document.getElementById("date");
+        const task = document.getElementById("task");
+
+        btn.addEventListener("click",()=>{
+            if(taskInput.value.trim() === ""){ 
+                // 空白の時orスペースのとき
+                errorMsg.style.visibility = "visible";
+            }else{
+                errorMsg.style.visibility = "hidden";
+                taskAdd();
+            }
+        })
+
+        taskAdd=()=>{
+            // const userInput = taskInput.value;
+            // const taskDate = date.value;
+            // 入力された値を変数に代入
+            
+            
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.style.marginRight = "10px";
+            const li = document.createElement("li");
+            //  タスク名の `span` を作る
+            const taskSpan = document.createElement("span");
+            taskSpan.textContent = taskInput.value;
+            taskSpan.style.marginRight = "10px"; // ✅ ここならOK！
+
+            //  日付の `span` を作る
+            const dateSpan = document.createElement("span");
+            dateSpan.textContent = date.value;
+            li.appendChild(checkbox);
+            li.append(taskSpan);
+            li.append(dateSpan);
+            task.appendChild(li);
+        }
+                
+    </script>
+</body>
+</html>
